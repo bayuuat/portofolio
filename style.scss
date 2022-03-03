@@ -8,6 +8,21 @@ html {
 
 body {
 	overscroll-behavior: none;
+	&::-webkit-scrollbar {
+		width: 0.8rem;
+		height: 0.4rem;
+	}
+	&::-webkit-scrollbar,
+	&::-webkit-scrollbar-thumb {
+		overflow: visible;
+		border-radius: 0.4rem;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: rgba(0, 0, 0, 0.2);
+	}
+	&::-webkit-scrollbar-track {
+		background: rgba(0, 0, 0, 0.1);
+	}
 }
 
 p {
@@ -58,6 +73,45 @@ p {
 				font-weight: 300;
 			}
 		}
+		.icon {
+			a {
+				position: absolute;
+				width: 7rem;
+				height: 7rem;
+				border-radius: 50%;
+				box-shadow: -0.2rem -0.2rem 1rem #fdfdfd, 0.2rem 0.2rem 1rem #e6e6e6;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: 1s;
+				&:hover {
+					box-shadow: -0.2rem -0.8rem 1rem #fdfdfd, 0.2rem 0.8rem 1rem #e6e6e6;
+					i {
+						color: #3b3b3b;
+					}
+				}
+				&:nth-of-type(1) {
+					top: 23rem;
+					right: 40rem;
+					animation: upndown 2.6s ease-in-out infinite;
+				}
+				&:nth-of-type(2) {
+					top: 15rem;
+					left: 75rem;
+					animation: upndown 3s ease-in-out infinite;
+				}
+				&:nth-of-type(3) {
+					top: 70rem;
+					right: 30rem;
+					animation: upndown 3.2s ease-in-out infinite;
+				}
+				i {
+					font-size: 3rem;
+					color: #bebebe;
+					transition: 0.7s;
+				}
+			}
+		}
 	}
 
 	.feat-work {
@@ -73,10 +127,32 @@ p {
 				font-weight: 600;
 				line-height: 1;
 			}
-			p {
-				font-size: 2.5rem;
-				color: #000;
-				font-weight: 300;
+			a {
+				text-decoration: none;
+
+				p {
+					font-size: 2.5rem;
+					color: #000;
+					font-weight: 300;
+					display: inline-block;
+					&:after {
+						content: '';
+						position: absolute;
+						width: 100%;
+						transform: scaleX(0);
+						height: 0.1rem;
+						bottom: 0;
+						left: 0;
+						background-color: #000;
+						transform-origin: bottom right;
+						transition: transform 0.25s ease-out;
+					}
+
+					&:hover:after {
+						transform: scaleX(1);
+						transform-origin: bottom left;
+					}
+				}
 			}
 		}
 		.horizontal-section {
@@ -138,15 +214,18 @@ p {
 	}
 
 	.about-me {
-		padding-left: 48rem;
-		padding-right: 48rem;
+		padding-left: 20rem;
+		padding-right: 20rem;
 		min-height: 100vh;
-		text-align: center;
-		font-size: 5rem;
-		color: #000;
-		font-weight: 300;
-		line-height: 1.4;
 		overflow: hidden;
+		p {
+			width: 70%;
+			text-align: center;
+			font-size: 5rem;
+			color: #000;
+			font-weight: 300;
+			line-height: 1.4;
+		}
 		span {
 			z-index: 1;
 			overflow: hidden;
@@ -157,6 +236,30 @@ p {
 			background-size: cover;
 			transform: translate(-50%, -50%);
 			animation: blow 4s linear infinite;
+		}
+		a {
+			text-decoration: none;
+			.cta {
+				position: absolute;
+				left: 87rem;
+				width: 18rem;
+				height: 18rem;
+				border-radius: 100%;
+				background-color: #000;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				opacity: 0;
+				transition: opacity 0.8s;
+				&:hover {
+					opacity: 1;
+				}
+				p {
+					font-size: 2.5rem;
+					color: rgb(255, 255, 255);
+					font-weight: 300;
+				}
+			}
 		}
 
 		@keyframes blow {
@@ -331,12 +434,17 @@ p {
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				transition: 0.6s;
 				&:hover {
 					box-shadow: -0.2rem -0.2rem 1rem #fdfdfd, 0.2rem 0.8rem 1rem #e6e6e6;
+					i {
+						color: #858585;
+					}
 				}
 				i {
 					font-size: 3rem;
 					color: #bebebe;
+					transition: 1s;
 				}
 			}
 		}

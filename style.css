@@ -10,6 +10,24 @@ body {
   overscroll-behavior: none;
 }
 
+body::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.4rem;
+}
+
+body::-webkit-scrollbar, body::-webkit-scrollbar-thumb {
+  overflow: visible;
+  border-radius: 0.4rem;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 p {
   font-family: 'Poppins', sans-serif;
   margin-bottom: 0;
@@ -67,6 +85,63 @@ p {
   font-weight: 300;
 }
 
+.wrapper .hero .icon a {
+  position: absolute;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  -webkit-box-shadow: -0.2rem -0.2rem 1rem #fdfdfd, 0.2rem 0.2rem 1rem #e6e6e6;
+          box-shadow: -0.2rem -0.2rem 1rem #fdfdfd, 0.2rem 0.2rem 1rem #e6e6e6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.wrapper .hero .icon a:hover {
+  -webkit-box-shadow: -0.2rem -0.8rem 1rem #fdfdfd, 0.2rem 0.8rem 1rem #e6e6e6;
+          box-shadow: -0.2rem -0.8rem 1rem #fdfdfd, 0.2rem 0.8rem 1rem #e6e6e6;
+}
+
+.wrapper .hero .icon a:hover i {
+  color: #3b3b3b;
+}
+
+.wrapper .hero .icon a:nth-of-type(1) {
+  top: 23rem;
+  right: 40rem;
+  -webkit-animation: upndown 2.6s ease-in-out infinite;
+          animation: upndown 2.6s ease-in-out infinite;
+}
+
+.wrapper .hero .icon a:nth-of-type(2) {
+  top: 15rem;
+  left: 75rem;
+  -webkit-animation: upndown 3s ease-in-out infinite;
+          animation: upndown 3s ease-in-out infinite;
+}
+
+.wrapper .hero .icon a:nth-of-type(3) {
+  top: 70rem;
+  right: 30rem;
+  -webkit-animation: upndown 3.2s ease-in-out infinite;
+          animation: upndown 3.2s ease-in-out infinite;
+}
+
+.wrapper .hero .icon a i {
+  font-size: 3rem;
+  color: #bebebe;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+
 .wrapper .feat-work {
   padding-top: 10rem;
   padding-bottom: 10rem;
@@ -85,10 +160,40 @@ p {
   line-height: 1;
 }
 
-.wrapper .feat-work .nav p {
+.wrapper .feat-work .nav a {
+  text-decoration: none;
+}
+
+.wrapper .feat-work .nav a p {
   font-size: 2.5rem;
   color: #000;
   font-weight: 300;
+  display: inline-block;
+}
+
+.wrapper .feat-work .nav a p:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  height: 0.1rem;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  -webkit-transition: -webkit-transform 0.25s ease-out;
+  transition: -webkit-transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
+}
+
+.wrapper .feat-work .nav a p:hover:after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
 }
 
 .wrapper .feat-work .horizontal-section {
@@ -169,15 +274,19 @@ p {
 }
 
 .wrapper .about-me {
-  padding-left: 48rem;
-  padding-right: 48rem;
+  padding-left: 20rem;
+  padding-right: 20rem;
   min-height: 100vh;
+  overflow: hidden;
+}
+
+.wrapper .about-me p {
+  width: 70%;
   text-align: center;
   font-size: 5rem;
   color: #000;
   font-weight: 300;
   line-height: 1.4;
-  overflow: hidden;
 }
 
 .wrapper .about-me span {
@@ -192,6 +301,41 @@ p {
           transform: translate(-50%, -50%);
   -webkit-animation: blow 4s linear infinite;
           animation: blow 4s linear infinite;
+}
+
+.wrapper .about-me a {
+  text-decoration: none;
+}
+
+.wrapper .about-me a .cta {
+  position: absolute;
+  left: 87rem;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 100%;
+  background-color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  -webkit-transition: opacity 0.8s;
+  transition: opacity 0.8s;
+}
+
+.wrapper .about-me a .cta:hover {
+  opacity: 1;
+}
+
+.wrapper .about-me a .cta p {
+  font-size: 2.5rem;
+  color: white;
+  font-weight: 300;
 }
 
 @-webkit-keyframes blow {
@@ -420,6 +564,8 @@ p {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
 }
 
 .wrapper .coming-soon .icon a:hover {
@@ -427,9 +573,15 @@ p {
           box-shadow: -0.2rem -0.2rem 1rem #fdfdfd, 0.2rem 0.8rem 1rem #e6e6e6;
 }
 
+.wrapper .coming-soon .icon a:hover i {
+  color: #858585;
+}
+
 .wrapper .coming-soon .icon a i {
   font-size: 3rem;
   color: #bebebe;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .phone {
