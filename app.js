@@ -1,6 +1,9 @@
-
 function convertRemToPixels(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+
+window.onresize = function () {
+    window.location.reload();
 }
 
 $(window).on("load", function () {
@@ -11,12 +14,8 @@ $(window).on("load", function () {
     var editLength = horLength - convertRemToPixels(90)
 
     let card1 = document.querySelector(".card-1");
-    let card2 = document.querySelector(".card-2");
     let card2Leng = document.querySelector(".card-2").offsetHeight;
-    var articleHorLength = document.querySelector(".article").scrollWidth - 200;
     let card1DistTop = document.querySelector(".card-1").offsetTop + editLength - convertRemToPixels(150);
-    let card2DistTop = document.querySelector(".card-2").offsetTop + editLength;
-    var articelScrollDistance = card1DistTop + articleHorLength;
 
     document.querySelector(".horizontal-section").style.height = editLength + "px";
     document.querySelector(".scroll-content").style.height = card2Leng + "px";
@@ -30,7 +29,6 @@ $(window).on("load", function () {
 
         if (scrollTop >= card1DistTop && scrollTop <= document.body.clientHeight) {
             card1.style.transform = "translateY(-" + ((scrollTop - card1DistTop) * .45) + "px)";
-            // card2.style.transform = "translateY(-" + ((scrollTop - card2DistTop) * 0.5) + "px)";
         }
     }
 
@@ -77,4 +75,5 @@ $(window).on("load", function () {
 
     AOS.init({ duration: 1200, });
 });
+
 
