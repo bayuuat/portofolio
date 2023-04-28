@@ -4,47 +4,48 @@ function convertRemToPixels(rem) {
 	return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
 
-function getPixelValue() {
+function changeHello() {
+	listWord = ['Hallo!', 'Olá!', 'Salve!', 'Bonjour!', 'Goddag!', 'Nǐn hǎo', 'Hallo!', 'Salve', 'Olá', 'Bonjour', 'Goddag', 'Nǐn hǎo'];
+	helloTag = document.querySelector('.hello-tag');
+	i = Math.round(scrollTop / 100);
+	if (i > listWord.length - 1) {
+		i = 0;
+	}
+	if (scrollTop <= window.innerHeight) {
+		helloTag.innerHTML = listWord[i];
+	}
+}
+
+function horizontalScroll() {
 	const windowWidth = window.innerWidth;
 	lebarFeatWork = document.querySelector('.element-wrapper').scrollWidth;
 	jarakFeatWorkToTopPage = document.querySelector('.horizontal-section').offsetTop;
 	batasBawahFeatWork = jarakFeatWorkToTopPage + lebarFeatWork - windowWidth;
 	tinggiWrapperFeatWork = lebarFeatWork - window.innerHeight;
 
+	document.querySelector('.horizontal-section').style.height = tinggiWrapperFeatWork + 'px';
+
+	if (scrollTop >= jarakFeatWorkToTopPage && scrollTop <= batasBawahFeatWork) {
+		document.querySelector('.element-wrapper').style.transform = 'translateX(-' + (scrollTop - jarakFeatWorkToTopPage) + 'px)';
+	}
+}
+
+function parallaxCard() {
 	card1 = document.querySelector('.card-1');
 	tinggiCard2 = document.querySelector('.card-2').offsetHeight;
-
 	tinggiAboutMe = document.querySelector('.about-me').offsetHeight;
-
 	jarakCard1ToTop = jarakFeatWorkToTopPage + tinggiWrapperFeatWork + tinggiAboutMe;
 	batasBawahCard2 = jarakCard1ToTop + tinggiCard2;
-}
 
-window.onresize = function () {
-	getPixelValue();
-	rezise();
-};
-
-function rezise() {
-	document.querySelector('.horizontal-section').style.height = tinggiWrapperFeatWork + 'px';
 	document.querySelector('.scroll-content').style.height = tinggiCard2 + 'px';
 
-	window.onscroll = function () {
-		var scrollTop = window.pageYOffset;
-		var bottomScrenn = scrollTop + window.innerHeight;
-		if (scrollTop >= jarakFeatWorkToTopPage && scrollTop <= batasBawahFeatWork) {
-			document.querySelector('.element-wrapper').style.transform = 'translateX(-' + (scrollTop - jarakFeatWorkToTopPage) + 'px)';
-		}
-
-		if (bottomScrenn >= jarakCard1ToTop && scrollTop <= batasBawahCard2) {
-			card1.style.transform = 'translateY(-' + (bottomScrenn - jarakCard1ToTop) * 0.3 + 'px)';
-		}
-	};
+	var bottomScrenn = scrollTop + window.innerHeight;
+	if (bottomScrenn >= jarakCard1ToTop && scrollTop <= batasBawahCard2) {
+		card1.style.transform = 'translateY(-' + (bottomScrenn - jarakCard1ToTop) * 0.3 + 'px)';
+	}
 }
 
-$(window).on('load', function () {
-	getPixelValue();
-	rezise();
+function hoverImage() {
 	var aboutSection = document.querySelector('.about-me');
 	let spacer = 0;
 	let spacerUP = 0;
@@ -93,5 +94,39 @@ $(window).on('load', function () {
 			circle.remove();
 		}, 1800);
 	});
+}
+
+function potraitCheck() {
+	var desktop = document.querySelector('.wrapper');
+	var phone = document.querySelector('.phone');
+	if (window.innerWidth < window.innerHeight) {
+		desktop.style.display = 'none';
+		phone.style.display = 'flex';
+	} else {
+		desktop.style.display = 'block';
+		phone.style.display = 'none';
+	}
+}
+
+window.onresize = function () {
+	potraitCheck();
+	horizontalScroll();
+	parallaxCard();
+};
+
+window.onscroll = function () {
+	scrollTop = window.pageYOffset;
+	changeHello();
+	horizontalScroll();
+	parallaxCard();
+};
+
+$(window).on('load', function () {
+	potraitCheck();
+	scrollTop = window.pageYOffset;
+	horizontalScroll();
+	parallaxCard();
+	hoverImage();
+	changeHello();
 	AOS.init({ duration: 1200 });
 });
