@@ -433,33 +433,30 @@ p {
 }
 
 .phone {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px 30px;
+  text-align: justify;
+}
+.phone img {
+  width: 45%;
+  animation: upndown 3s ease-in-out infinite;
+}
+.phone p {
+  font-family: "Poppins", sans-serif;
+  font-size: 7rem;
+  color: #000;
+  line-height: 1.2;
+  width: 75%;
 }
 
-@media screen and (max-width: 425px) {
-  .wrapper {
-    display: none;
-  }
+@media screen and (min-width: 425px) {
   .phone {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    padding: 10px 30px;
-    text-align: justify;
-  }
-  .phone img {
-    width: 45%;
-    animation: upndown 3s ease-in-out infinite;
-  }
-  .phone p {
-    font-family: "Poppins", sans-serif;
-    font-size: 7rem;
-    color: #000;
-    line-height: 1.2;
-    width: 75%;
+    display: none;
   }
 }
 @keyframes upndown {
