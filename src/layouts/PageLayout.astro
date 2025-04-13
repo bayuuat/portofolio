@@ -1,0 +1,40 @@
+---
+import FloatingMode from "@components/FloatingMode.astro";
+import Head from "@components/Head.astro";
+import { SITE } from "@consts";
+
+type Props = {
+	title: string;
+	description: string;
+};
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<Head title={`${title} | ${SITE.NAME}`} description={description} />
+	</head>
+	<body>
+		<!-- <Header /> -->
+		<main>
+			<slot />
+			<FloatingMode />
+			<div class='phone'>
+				<img src='assets/icon-hand.png' alt='' class='my-5' />
+				<hr />
+				<hr />
+				<hr />
+				<hr />
+				<hr />
+				<p>Hi, i'm sorry it's not ready yet for mobile and potrait version. I really recommend using the desktop only.</p>
+				<hr />
+				<hr />
+				<hr />
+				<p>But if you insist, you can rotate your cellphone and refresh the page. Thank you for visiting, have a nice day.</p>
+			</div>
+		</main>
+		<!-- <Footer /> -->
+	</body>
+</html>

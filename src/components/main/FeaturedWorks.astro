@@ -1,0 +1,41 @@
+---
+import UseCaseBUtton from "@components/UseCaseButton.astro";
+import Image from "astro/components/Image.astro";
+
+import { getCollection } from "astro:content";
+import { SITE } from "@consts";
+
+const projects = (await getCollection("projects"))
+	.filter((project) => !project.data.draft)
+	.sort((a, b) => b.data.rate - a.data.rate)
+	.slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
+---
+
+<div class='feat-work'>
+	<div class='horizontal-section'>
+		<div class='sticky-wrapper'>
+			<div class='nav flex justify-between'>
+				<h2 class='text-[5rem] font-semibold leading-none' data-aos='fade-right' data-aos-once='true'>Featured Works</h2>
+				<a href='/soon' class='no-underline'>
+					<p data-aos='fade-left' data-aos-once='true' class='text-4xl font-light self-center'>see my sandbox</p>
+				</a>
+			</div>
+			<div class='element-wrapper'>
+				{
+					projects.map((project) => (
+						<div class='item flex justify-between'>
+							<div class='detail w-1/2 self-center' data-aos='fade-right' data-aos-once='true'>
+								<h3>{project.data.title}</h3>
+								<p>{project.data.description}</p>
+								<UseCaseBUtton href={`/soon`}> case study </UseCaseBUtton>
+							</div>
+							<div class='image-wrap' data-aos='fade-left' data-aos-once='true'>
+								<Image alt='Project Bus' src={project.data.image} class="transition duration-500 ease-in-out 	dark:brightness-50 dark:hover:brightness-75"/>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</div>
