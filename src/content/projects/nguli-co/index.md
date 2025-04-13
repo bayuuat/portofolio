@@ -4,7 +4,7 @@ description: "A fast-paced, strategic multiplayer game where teams race to outsm
 date: "Mar 26 2024"
 demoURL: "https://astro-nano-demo.vercel.app"
 repoURL: "https://github.com/markhorn-dev/astro-nano"
-image: "./project-kmk.jpg"
+image: "./project-nguli.webp"
 rate: 10
 ---
 
