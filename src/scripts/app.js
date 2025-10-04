@@ -135,4 +135,4 @@ function initPage() {
 
 window.onload = initPage;
 window.onpageshow = initPage;
-window.on
+window.on;

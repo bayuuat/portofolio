@@ -131,7 +131,7 @@ function initAboutMeCursor() {
 		gsap.set(cursor, { transformOrigin: "center center", rotation: 0, width: radius * 2, height: radius * 2 });
 
 		let rotate = gsap.timeline({ repeat: -1 });
-		rotate.to(cursor, { rotation: 360, duration: 5, ease: "none" });
+		rotate.to(cursor, { rotation: -360, duration: 5, ease: "none" });
 	}
 
 	rounded(radius);
