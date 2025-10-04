@@ -4,49 +4,25 @@ import { IconInstagram, IconLinkedin, IconMail } from "@icons";
 
 <div class='hero flex items-end'>
 	<div class='inner-hero'>
-		<h2 class='hello-tag text-[#f4f4f4] dark:text-[#232323]' data-aos='fade-up' data-aos-once='true' data-aos-duration='2800'>Hallo!</h2>
-		<div class='dark:text-white' data-aos='fade-up' data-aos-once='true' data-aos-duration='1500'>
+		<h2 class='hello-tag text-[#f4f4f4] dark:text-[#232323] gsap-fade-up'>Hallo!</h2>
+		<div class='dark:text-white gsap-fade-up'>
 			<h1>BAYU ADITYA TRIWIBOWO</h1>
 			<p class='flex gap-6 items-center text-[#232323] dark:text-[#f5f5f5]'>Portfolio — Jack of All Tech <span class='text-5xl mt-3'>♦️</span></p>
 		</div>
 	</div>
 	<div class='icon-holder'>
 		<div class='icon flex justify-between'>
-			<a
-				class='group'
-				data-aos='fade-up'
-				data-aos-once='true'
-				data-aos-delay='1000'
-				data-aos-duration='800'
-				target='_blank'
-				href='https://www.instagram.com/bayuuat/'
-				aria-label='Visit Instagram profile'
+			<a class='group gsap-fade-up' target='_blank' href='https://www.instagram.com/bayuuat/' aria-label='Visit Instagram profile'
 				><IconInstagram
 					className='stroke-[#bebebe] dark:stroke-[#707070] group-hover:stroke-black transition duration-500 dark:group-hover:stroke-white size-12'
 				/></a
 			>
-			<a
-				class='group'
-				data-aos='fade-up'
-				data-aos-once='true'
-				data-aos-delay='1500'
-				data-aos-duration='800'
-				target='_blank'
-				href='mailto:bayuuat@gmail.com'
-				aria-label='Send email to me'
+			<a class='group gsap-fade-up' target='_blank' href='mailto:bayuuat@gmail.com' aria-label='Send email to me'
 				><IconMail
 					className='stroke-[#bebebe] dark:stroke-[#707070] group-hover:stroke-black transition duration-500 dark:group-hover:stroke-white size-12'
 				/></a
 			>
-			<a
-				class='group'
-				data-aos='fade-up'
-				data-aos-once='true'
-				data-aos-delay='2000'
-				data-aos-duration='800'
-				target='_blank'
-				href='https://www.linkedin.com/in/bayuuat/'
-				aria-label='Visit Linkedin profile'
+			<a class='group gsap-fade-up' target='_blank' href='https://www.linkedin.com/in/bayuuat/' aria-label='Visit Linkedin profile'
 				><IconLinkedin
 					className='stroke-[#bebebe] dark:stroke-[#707070] group-hover:stroke-black transition duration-500 dark:group-hover:stroke-white size-12'
 				/></a
@@ -54,3 +30,43 @@ import { IconInstagram, IconLinkedin, IconMail } from "@icons";
 		</div>
 	</div>
 </div>
+
+<script is:inline>
+	import gsap from "gsap";
+	import Lenis from "lenis";
+	function animateHero() {
+		gsap.utils.toArray(".gsap-fade-up").forEach((el, i) => {
+			gsap.fromTo(
+				el,
+				{ opacity: 0, y: 60 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 1.2,
+					delay: i * 0.2 + 0.2,
+					ease: "power2.out",
+					scrollTrigger: {
+						trigger: el,
+						start: "top 90%",
+						toggleActions: "play none none none",
+					},
+				}
+			);
+		});
+	}
+	function initLenis() {
+		const lenis = new Lenis({
+			smooth: true,
+			lerp: 0.08,
+		});
+		function raf(time) {
+			lenis.raf(time);
+			requestAnimationFrame(raf);
+		}
+		requestAnimationFrame(raf);
+	}
+	document.addEventListener("DOMContentLoaded", () => {
+		animateHero();
+		initLenis();
+	});
+</script>
