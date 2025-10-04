@@ -141,8 +141,6 @@ function initAboutMeCursor() {
 		position: "fixed",
 		left: 0,
 		top: 0,
-		width: "80px",
-		height: "80px",
 		pointerEvents: "none",
 		zIndex: 9999,
 		opacity: 0,
