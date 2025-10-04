@@ -58,6 +58,23 @@ const { title, description, image = "/nano.png" } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
+<!-- JSON-LD Structured Data for Rich Results -->
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Bayu Aditya Triwibowo",
+  "url": Astro.url,
+  "image": new URL(image, Astro.url),
+  "sameAs": [
+    "https://www.linkedin.com/in/bayuuat/",
+    "https://www.instagram.com/bayuuat/"
+  ],
+  "jobTitle": "Software Engineer",
+  "description": description
+})}
+</script>
+
 <ViewTransitions  />
 
 <script>
